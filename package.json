@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build:css": "postcss project/assets/css/tailwind.css -o project/assets/css/styles.css",
-    "start": "cd .. && node server.js"
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
