@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>FYP Registration Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/assets/CSS/styles.css" rel="stylesheet">
+    </head>
+
+    <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+        <div id="content" class="w-full">
+            <form id="registerForm" class="bg-gray-800 p-8 m-3 mx-auto rounded-2xl shadow-lg w-[95%] min-w-[260px] max-w-[450px]">
+                <h2 class="text-2xl font-bold text-purple-400 text-center mb-6">Register</h2>
+
+                <div class="mb-4">
+                    <label for="username" class="block text-gray-300 mb-1">Username:</label>
+                    <input type="text" id="username" name="username" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="mb-4">
+                    <label for="email" class="block text-gray-300 mb-1">Email:</label>
+                    <input type="email" id="email" name="email" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="block text-gray-300 mb-1">Password:</label>
+                    <input type="password" id="password" name="password" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <button type="submit" id="registerBtn" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Register</button>
+
+                <a href="/login" class="block text-center w-full bg-gray-600 text-white py-2 mt-3 rounded hover:bg-gray-500 transition">Have an Account? Login!</a>
+            </form>
+
+            <p id="message" class="block text-center w-[95%] min-w-[250px] max-w-[450px] m-3 mx-auto py-2 rounded invisible"></p>
+        </div>
+        
+        <script src="/assets/Scripts/registerScript.js"></script>
+    </body>
+</html>

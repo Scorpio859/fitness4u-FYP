@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FYP journal Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/assets/CSS/styles.css" rel="stylesheet">
+        <style>
+            /*custom styling for the water meter bc its such a niche tag tailwind doesnt cover it*/
+            meter {
+                all: unset; /*reset default browser styles*/
+                display: block;
+                border-radius: 6px;
+            }
+
+            /*unfill part*/
+            meter::-webkit-meter-bar {
+                background: #e5e7eb !important; /*tailwind gray-300 hex*/
+                border-radius: 6px;
+            }
+
+            /*water drank part*/
+            meter::-webkit-meter-optimum-value,
+            meter::-webkit-meter-suboptimum-value,
+            meter::-webkit-meter-even-less-good-value {
+                background: #60a5fa !important; /*tailwind blue-400 hex*/
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+        <div class="fixed top-0 left-0 w-full h-full bg-[url('../Images/aaron-burden-o-ubWHV29Uk-unsplash.jpg')] bg-cover bg-center opacity-10"></div>
+        <div id="content" class="w-full text-gray-300 text-center relative">
+            <div class="m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <a href="/home" class="flex bg-purple-600 hover:bg-purple-700 w-16 h-16 rounded-full">
+                    <img src="assets/Images/home2-svgrepo-com.svg" alt="home button" class="m-3">
+                </a>
+            </div>
+
+            <p id="message" class="hidden block bg-purple-600 text-xl text-black text-center w-[95%] min-w-[250px] max-w-[750px] m-3 p-4 mx-auto py-2 rounded-xl">Application features limited untill you enter your details
+                <a href="/details" class="underline text-xl font-bold">Here!</a>
+            </p>
+
+            <div class="flex justify-between items-center bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <button id="prevDay" class="flex bg-purple-600 hover:bg-purple-700 w-12 h-12 rounded-full">
+                    <img src="assets/Images/left-arrow-svgrepo-com.svg" alt="previous day" class="rounded-full">
+                </button>
+
+                <div id="date" class="text-gray-300 text-xl"></div>
+
+                <button id="nextDay" class="flex bg-purple-600 hover:bg-purple-700 w-12 h-12 rounded-full">
+                    <img src="assets/Images/right-arrow-svgrepo-com.svg" alt="next day" class="rounded-full">
+                </button>
+            </div>
+
+            <div class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <h2 class="text-xl font-bold text-purple-400 text-center mb-3">Calorie Stats</h2>
+                <span id="calories" class="flex items-center justify-center w-full mb-3">Today's progress:
+                    <p class="intake text-green-500 mx-2">???</p> - 
+                    <p class="burnt text-red-600 mx-2">???</p> =
+                    <p id="sum" class="mx-2">???</p>/
+                    <p id="calGoal" class="mx-2"></p>
+                </span>
+                
+                <span class="flex items-center justify-evenly max-w-md mx-auto">
+                    <span class="flex items-center">in: 
+                        <p class="intake text-green-500 ml-2">???</p>
+                    </span>
+                    <span class="flex items-center">burnt: 
+                        <p class="burnt text-red-600 ml-2">???</p>
+                    </span>
+                </span>
+            </div>
+
+            <div class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <h2 class="text-xl font-bold text-blue-400 text-center mb-3">Water Drank</h2>
+
+                <div class="flex items-center justify-between w-full max-w-xl mx-auto mb-3" >
+                    <span class="text-sm mr-2">0ml</span>
+                    <meter id="meter" min="0" max="1" value="0" class="w-full h-6"></meter>
+                    <span class="waterGoal text-sm ml-2">????</span>ml
+                </div>
+
+                <span class="flex items-center justify-center">
+                    Today's Water: 
+                    <p id="water" class="mx-2">????</p>/
+                    <p class="waterGoal ml-2">????</p>ml
+                </span>      
+            </div>
+
+            <div class="flex flex-col bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <textarea id="notes" placeholder="Add your notes here..." class="w-full min-h-24 p-2 mb-3 bg-gray-700 text-white border-2 border-gray-600 rounded focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+
+                <button type="submit" id="saveNotes" class="w-32 self-end bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Save notes</button>
+            </div>
+
+        </div>
+            
+        <script src="/assets/Scripts/journalScript.js"></script>
+    </body>
+</html>

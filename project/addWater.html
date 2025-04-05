@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FYP add water Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/assets/CSS/styles.css" rel="stylesheet">
+        <style>
+            /*custom styling for the water meter bc its such a niche tag tailwind doesnt cover it*/
+            meter {
+                all: unset; /*reset default browser styles*/
+                display: block;
+                border-radius: 6px;
+            }
+
+            /*unfill part*/
+            meter::-webkit-meter-bar {
+                background: #e5e7eb !important; /*tailwind gray-300 hex*/
+                border-radius: 6px;
+            }
+
+            /*water drank part*/
+            meter::-webkit-meter-optimum-value,
+            meter::-webkit-meter-suboptimum-value,
+            meter::-webkit-meter-even-less-good-value {
+                background: #60a5fa !important; /*tailwind blue-400 hex*/
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+        <div class="fixed top-0 left-0 w-full h-full bg-[url('../Images/janosch-lino-7b1W1mcwekw-unsplash.jpg')] bg-cover bg-center opacity-10"></div>
+        <div id="content" class="w-full text-gray-300 text-center relative">
+            <div class="m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <a href="/home" class="flex bg-purple-600 hover:bg-purple-700 w-16 h-16 rounded-full">
+                    <img src="assets/Images/home2-svgrepo-com.svg" alt="home button" class="m-3">
+                </a>
+            </div>
+            
+            <p id="message" class="hidden block bg-purple-600 text-xl text-black text-center w-[95%] min-w-[250px] max-w-[750px] m-3 p-4 mx-auto py-2 rounded-xl">Water goal disabled untill you enter your details
+                <a href="/details" class="underline text-xl font-bold">Here!</a>
+            </p>
+
+            <div class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <h2 class="text-xl font-bold text-blue-400 text-center mb-3">Water Drank</h2>
+
+                <div class="flex items-center justify-between w-full max-w-xl mx-auto mb-3" >
+                    <span class="text-sm mr-2">0ml</span>
+                    <meter id="meter" min="0" max="1" value="0" class="w-full h-6"></meter>
+                    <span class="waterGoal text-sm ml-2">????</span>ml
+                </div>
+
+                <span class="flex items-center justify-center">
+                    Today's Water: 
+                    <p id="water" class="mx-2">????</p>/
+                    <p class="waterGoal ml-2">????</p>ml
+                </span>  
+            </div>
+
+            <form id="waterForm" class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px] text-left">
+                <div class="mb-8">
+                    <input type="radio" id="150" name="waterValue" value="150" class="appearance-none bg-gray-300 mx-2 border-2 w-4 h-4 checked:bg-purple-600 rounded-full">
+                    <label for="150" class="text-gray-300 mb-1 text-lg">150ml (Mouth-full)</label><br>
+                </div>
+                <div class="mb-8">
+                    <input type="radio" id="350" name="waterValue" value="350" class="appearance-none bg-gray-300 mx-2 border-2 w-4 h-4 checked:bg-purple-600 rounded-full">
+                    <label for="350" class="text-gray-300 mb-1 text-lg">350ml (Cup of Water)</label><br>
+                </div>
+                <div class="mb-8">
+                    <input type="radio" id="500" name="waterValue" value="500" class="appearance-none bg-gray-300 mx-2 border-2 w-4 h-4 checked:bg-purple-600 rounded-full">
+                    <label for="500" class="text-gray-300 mb-1 text-lg">500ml (Glass of Water)</label><br>
+                </div>
+                <div class="mb-8">
+                    <input type="radio" id="1000" name="waterValue" value="1000" class="appearance-none bg-gray-300 mx-2 border-2 w-4 h-4 checked:bg-purple-600 rounded-full">
+                    <label for="1000" class="text-gray-300 mb-1 text-lg">1L (Bottle of Water)</label><br>
+                </div>
+                <div class="mb-8">
+                    <input type="radio" id="custom" name="waterValue" value="" class="appearance-none bg-gray-300 mx-2 border-2 w-4 h-4 checked:bg-purple-600 rounded-full">
+                    <label for="custom" class="text-gray-300 mb-1 text-lg">Enter custom amount (ml): <input type="number" id="customValue" name="customValue" min="0" class="w-[90%] ml-9 sm:w-[25%] sm:ml-0 h-7 p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500"></label><br>
+                </div>
+
+                <button type="submit" id="addWater" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Add Water!</button>
+            </form>
+
+            <p id="formMessage" class="block text-center w-[95%] min-w-[250px] max-w-[750px] m-3 mx-auto py-2 rounded invisible"></p>
+        </div>
+        
+        <script src="/assets/Scripts/addWaterScript.js"></script>
+    </body>
+</html>

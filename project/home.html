@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>FYP Home Page</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="/assets/CSS/styles.css" rel="stylesheet">
+        <style>
+            /*custom styling for the water meter bc its such a niche tag tailwind doesnt cover it*/
+            meter {
+                all: unset; /*reset default browser styles*/
+                display: block;
+                border-radius: 6px;
+            }
+
+            /*unfill part*/
+            meter::-webkit-meter-bar {
+                background: #e5e7eb !important; /*tailwind gray-300 hex*/
+                border-radius: 6px;
+            }
+
+            /*water drank part*/
+            meter::-webkit-meter-optimum-value,
+            meter::-webkit-meter-suboptimum-value,
+            meter::-webkit-meter-even-less-good-value {
+                background: #60a5fa !important; /*tailwind blue-400 hex*/
+                border-radius: 6px;
+            }
+        </style>
+    </head>
+
+    <body class="bg-gray-900 flex items-center justify-center min-h-screen">
+        <div id="content" class="w-full text-gray-300 text-center">
+            <p id="message" class="hidden block bg-purple-600 text-xl text-black text-center w-[95%] min-w-[250px] max-w-[750px] m-3 p-4 mx-auto py-2 rounded-xl">Application features limited untill you enter your details
+                <a href="/details" class="underline text-xl font-bold">Here!</a>
+            </p>
+
+            <div class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <h2 class="text-xl font-bold text-purple-400 text-center mb-3">Calorie Stats</h2>
+                <span id="calories" class="flex items-center justify-center w-full mb-3">Today's progress:
+                    <p class="intake text-green-500 mx-2">???</p> - 
+                    <p class="burnt text-red-600 mx-2">???</p> =
+                    <p id="sum" class="mx-2">???</p>/
+                    <p id="calGoal" class="mx-2"></p>
+                </span>
+                
+                <span class="flex items-center justify-evenly max-w-md mx-auto">
+                    <span class="flex items-center">in: 
+                        <p class="intake text-green-500 ml-2">???</p>
+                    </span>
+                    <span class="flex items-center">burnt: 
+                        <p class="burnt text-red-600 ml-2">???</p>
+                    </span>
+                </span>
+            </div>
+
+            <div class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <h2 class="text-xl font-bold text-blue-400 text-center mb-3">Water Drank</h2>
+
+                <div class="flex items-center justify-between w-full max-w-xl mx-auto mb-3" >
+                    <span class="text-sm mr-2">0ml</span>
+                    <meter id="meter" min="0" max="1" value="0" class="w-full h-6"></meter>
+                    <span class="waterGoal text-sm ml-2">????</span>ml
+                </div>
+
+                <span class="flex items-center justify-center">
+                    Today's Water: 
+                    <p id="water" class="mx-2">????</p>/
+                    <p class="waterGoal ml-2">????</p>ml
+                </span>
+                    
+            </div>
+
+            <nav id="navigation" class="bg-gray-800 p-6 m-3 mx-auto rounded-2xl w-[95%] min-w-[250px] max-w-[750px]">
+                <ul class="grid grid-cols-1 gap-4 [@media(min-width:400px)]:grid-cols-2">
+                    <li>
+                        <a href="/addMeal" class="relative block bg-black text-white text-center px-4 py-8 m-2 rounded-2xl">
+                            <img src="assets/Images/hermes-rivera-Ww8eQWjMJWk-unsplash.jpg" alt="Food in a bowl" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-90 hover:opacity-50">
+                            <span class="relative px-1 bg-black bg-opacity-30 rounded-full">Add Meal</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/addWater" class="relative block bg-black text-white text-center px-4 py-8 m-2 rounded-2xl">
+                            <img src="assets/Images/janosch-lino-7b1W1mcwekw-unsplash.jpg" alt="Glasses of water on a table" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-90 hover:opacity-50">
+                            <span class="relative px-1 bg-black bg-opacity-30 rounded-full">Add Water</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/addExercise" class="relative block bg-black text-white text-center px-4 py-8 m-2 rounded-2xl">
+                            <img src="assets/Images/jan-gunnar-nygard-JlXx1ZRBD28-unsplash.jpg" alt="Open notepad with pen" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-90 hover:opacity-50">
+                            <span class="relative px-1 bg-black bg-opacity-30 rounded-full">Add Exercise</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/journal" class="relative block bg-black text-white text-center px-4 py-8 m-2 rounded-2xl">
+                            <img src="assets/Images/aaron-burden-o-ubWHV29Uk-unsplash.jpg" alt="Food in a bowl" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-90 hover:opacity-50">
+                            <span class="relative px-1 bg-black bg-opacity-30 rounded-full">Journal</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/details" class="relative block bg-black text-white text-center px-4 py-8 m-2 rounded-2xl">
+                            <img src="assets/Images/siora-photography-cixohzDpNIo-unsplash.jpg" alt="Measuring tape roll unraveled" class="absolute inset-0 w-full h-full object-cover rounded-2xl opacity-90 hover:opacity-50">
+                            <span class="relative px-1 bg-black bg-opacity-30 rounded-full">Your Details</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        
+        <script src="/assets/Scripts/homeScript.js"></script>
+    </body>
+</html>
