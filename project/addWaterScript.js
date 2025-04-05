@@ -16,14 +16,17 @@ window.onload = function() {
     }).then(response => {
         return response.json();
     }).then(data => {
-        if (data.water_goal == '????') {
+        //check if details are setup
+        if (data.water_goal == "????") {
             message.classList.remove("hidden");
+            meter.max = 2000;
+        } else {
+            //update meter max to users water goal
+            meter.max = data.water_goal;
         }
-        //update meter max value
-        meter.max = data.water_goal;
-        //update water goal elements
+        //update both water goal elements(bar end,summary)
         waterGoal[0].innerHTML = data.water_goal;
-        waterGoal[1].innerHTML = data.water_goal;
+        waterGoal[1].innerHTML = data.water_goal; 
     });
 
     updateUserStats();

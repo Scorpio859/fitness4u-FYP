@@ -301,7 +301,7 @@ function startServer() {
             //calculate water goal based on user weight
             const water = (35*weight);
             console.log(`updating user detials A:${age} S:${sex} H:${height} W:${weight} CAL:${bmr} WTR:${water}`);
-            await database.query("UPDATE fitness4udb.userdetails SET age=$1, gender=$2, height=$3, weight=$4, calorie_goal=$5, water_goal=$6 WHERE user_id=$7", [age, sex, height, weight, bmr, water, user_id])
+            await database.query("UPDATE fitness4udb.userdetails SET age=$1, sex=$2, height=$3, weight=$4, calorie_goal=$5, water_goal=$6 WHERE user_id=$7", [age, sex, height, weight, bmr, water, user_id])
             return res.json({ success: true});
         } catch (error) {
             console.log("An Error occured: ", error);
