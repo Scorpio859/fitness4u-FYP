@@ -6,15 +6,18 @@ const bcrypt = require('bcrypt');
 const salt = 10;
 const path = require("path");
 var { Pool } = require('pg');
-const { getEventListeners } = require("events");
-const { data } = require("autoprefixer");
+require('dotenv').config();
+
 //database connection details
+const connectionString = process.env.DATABASE_URL || 
+                        `postgres://${process.env.DB_USER}
+                        :${process.env.DB_PASSWORD}
+                        @${process.env.DB_HOST}
+                        :${process.env.DB_PORT}
+                        /${process.env.DB_NAME}`;
 var database = new Pool({
-    user: "c20391861",
-    host: "localhost",
-    database: "postgres",
-    password: "Snipingsoup24",
-    port: 4545
+    connectionString,
+    ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
 //try connect to db
@@ -32,7 +35,7 @@ function startServer() {
     app.use(bodyParser.json());
     //setting up session management
     app.use(session({
-        secret: 'C20391861FYP',
+        secret: process.env.SESSION_SECRET,
         saveUninitialized: false,
         resave: false,
         cookie: {
@@ -366,7 +369,8 @@ function startServer() {
         })
     }
 
-    app.listen(9999, function() {
-        console.log("Server running on port 9999");
+    const PORT = process.env.PORT || 9999;
+    app.listen(PORT, function() {
+        console.log(`Server running on port: ${PORT}`);
     });
 }
