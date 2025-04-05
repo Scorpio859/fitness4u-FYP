@@ -12,7 +12,7 @@ window.onload = function() {
     }).then(data => {
         //put retrieved data in corresponding slots
         document.getElementById("age").value = data.age;
-        document.getElementById("sex").value = data.gender;
+        document.getElementById("sex").value = data.sex;
         document.getElementById("height").value = data.height;
         document.getElementById("weight").value = data.weight;
     })

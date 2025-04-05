@@ -28,13 +28,15 @@ window.onload = function() {
         //check if details are setup
         if (data.calorie_goal == "????" || data.water_goal == "????") {
             message.classList.remove("hidden");
+            meter.max = 2000;
+        } else {
+            //update meter max to users water goal
+            meter.max = data.water_goal;
         }
         calGoal.innerHTML = data.calorie_goal;
-        //update meter max to users water goal
-        meter.max = data.water_goal;
         //update both water goal elements(bar end,summary)
         waterGoal[0].innerHTML = data.water_goal;
-        waterGoal[1].innerHTML = data.water_goal;        
+        waterGoal[1].innerHTML = data.water_goal;       
     });
 
     updateUserStats();
