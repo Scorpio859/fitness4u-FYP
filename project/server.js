@@ -106,7 +106,7 @@ function startServer() {
                 //get user_id of registered user
                 const result = await database.query("SELECT user_id FROM fitness4udb.users WHERE email = $1", [email]);
                 //setup user details 
-                await database.query(`INSERT INTO fitness4udb.userdetails (details_id, user_id, age, height, weight, gender, calorie_goal, water_goal)
+                await database.query(`INSERT INTO fitness4udb.userdetails (details_id, user_id, age, height, weight, sex, calorie_goal, water_goal)
                                     VALUES ($1, $2, 0, 0, 0, 'Not set', 0, 0)`, [result.rows[0].user_id, result.rows[0].user_id]);
                 res.json({registered: true});
             } else {
@@ -266,16 +266,16 @@ function startServer() {
     app.post("/getDetails", async(req,res) => {
         try {
             const user_id = req.session.userID;
-            const result = await database.query("SELECT age, gender, weight, height, calorie_goal, water_goal FROM fitness4udb.userdetails WHERE user_id = $1", [user_id]);
+            const result = await database.query("SELECT age, sex, weight, height, calorie_goal, water_goal FROM fitness4udb.userdetails WHERE user_id = $1", [user_id]);
             //return the detials
-            console.log(`result: ${result.rows[0].age}, ${result.rows[0].gender}, ${result.rows[0].height}, ${result.rows[0].weight}, ${result.rows[0].calorie_goal}, ${result.rows[0].water_goal}`);
-            if (result.rows[0].gender == "Not set") {
+            console.log(`result: ${result.rows[0].age}, ${result.rows[0].sex}, ${result.rows[0].height}, ${result.rows[0].weight}, ${result.rows[0].calorie_goal}, ${result.rows[0].water_goal}`);
+            if (result.rows[0].sex == "Not set") {
                 result.rows[0].calorie_goal = "????";
                 result.rows[0].water_goal = "????";
             }
             return res.json({
                 age: result.rows[0].age,
-                gender: result.rows[0].gender,
+                sex: result.rows[0].sex,
                 height: result.rows[0].height,
                 weight: result.rows[0].weight,
                 calorie_goal: result.rows[0].calorie_goal,
