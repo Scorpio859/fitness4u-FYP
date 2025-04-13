@@ -87,6 +87,10 @@ function handleMessageGreen() {
     //style to be green and make visible
     formMessage.classList.add("bg-green-200", "text-green-600");
     formMessage.classList.remove("invisible");
+    //wait 3s and hide the message again
+    setTimeout(() => {
+        formMessage.classList.add("invisible");
+    }, 3000);
     return;
 }
 
@@ -99,6 +103,10 @@ function handleMessageRed() {
     //style to be red and make visible
     formMessage.classList.add("bg-red-200", "text-red-600");
     formMessage.classList.remove("invisible");
+    //wait 3s and hide the message again
+    setTimeout(() => {
+        formMessage.classList.add("invisible");
+    }, 3000);
     return;
 }
 

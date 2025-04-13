@@ -66,6 +66,10 @@ function handleMessageGreen() {
     //style to be green and make visible
     message.classList.add("bg-green-200", "text-green-600");
     message.classList.remove("invisible");
+    //wait 3s and hide the message again
+    setTimeout(() => {
+        message.classList.add("invisible");
+    }, 3000);
     return;
 }
 
@@ -78,5 +82,9 @@ if (message.classList.contains("bg-green-200", "text-green-600")) {
 //style to be red and make visible
 message.classList.add("bg-red-200", "text-red-600");
 message.classList.remove("invisible");
+//wait 3s and hide the message again
+setTimeout(() => {
+    message.classList.add("invisible");
+}, 3000);
 return;
 }
