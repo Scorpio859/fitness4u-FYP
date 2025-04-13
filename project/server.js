@@ -10,13 +10,10 @@ require('dotenv').config();
 
 //database connection details
 const connectionString = process.env.DATABASE_URL || 
-                        `postgres://${process.env.DB_USER}
-                        :${process.env.DB_PASSWORD}
-                        @${process.env.DB_HOST}
-                        :${process.env.DB_PORT}
-                        /${process.env.DB_NAME}`;
+                        `postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_NAME}`;
 var database = new Pool({
     connectionString,
+    //comment out to run dev env
     ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : false
 });
 
@@ -120,7 +117,6 @@ function startServer() {
                         //res.json({isEmailTaken: true})
                         response.isEmailTaken = true;
                     }
-                    
                     //check is username is taken
                     if (row.username === username) {
                         console.log("username already taken");
@@ -128,12 +124,10 @@ function startServer() {
                         response.isUsernameTaken = true;
                     }
                 });
-
                 //send response
                 console.log("sending response");
                 res.json(response);
             }
-
         } catch(error) {
             console.error("an error occured: ", error);
             res.status(500).json({error: "Internal Server Error"});
@@ -169,18 +163,6 @@ function startServer() {
         } catch(error) {
             console.error("an error occured: ", error);
             res.status(500).json({error: "Internal Server Error"});
-        }
-    });
-
-    //function to get the current user's username from the database
-    app.post("/getUser", async(req, res) =>{
-        try {
-            const user_id = req.session.userID;
-            const result = await database.query("SELECT username FROM fitness4udb.users WHERE user_id = $1", [user_id]);
-            const username = result.rows[0].username;
-            return res.json({ username });
-        } catch(error) {
-            console.error("an error occured: ", error);
         }
     });
 
@@ -234,7 +216,7 @@ function startServer() {
             var result = await database.query("SELECT calories FROM fitness4udb.usermeals WHERE user_id = $1 AND meal_date = (NOW() - INTERVAL'1 day' * $2)::date", [user_id, dayModifier]);
             //total calorie intake
             for (i=0;i<result.rows.length;i++) {
-                cals = cals + result.rows[i].calories;
+                cals = cals + parseFloat(result.rows[i].calories);
                 console.log(`Counting Cals for user: ${user_id} Sum: ${cals}`);
             }
                 result = await database.query("SELECT water FROM fitness4udb.userwater WHERE user_id = $1 AND water_date = (NOW() - INTERVAL'1 day' * $2)::date", [user_id, dayModifier]);
@@ -246,7 +228,7 @@ function startServer() {
                 result = await database.query("SELECT calories_burnt FROM fitness4udb.userexercises WHERE user_id = $1 AND exercise_date = (NOW() - INTERVAL'1 day' * $2)::date", [user_id, dayModifier]);
             //total calorie burnt
             for (i=0;i<result.rows.length;i++) {
-                burnt = burnt + result.rows[i].calories_burnt;
+                burnt = burnt + parseFloat(result.rows[i].calories_burnt);
                 console.log(`Counting Burnt for user: ${user_id} Sum: ${burnt}`);
             }
 
