@@ -49,7 +49,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="duration" class="block text-gray-300 mb-1">Duration(minutes):</label>
-                    <input type="number" step=".01" id="duration" name="duration" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="number" step="0.5" min="0" id="duration" name="duration" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
                 <div class="mb-4">
                     <label for="type" class="block text-gray-300 mb-1">Type:</label>
@@ -61,7 +61,7 @@
                 </div>
                 <div class="mb-4">
                     <label for="cals" class="block text-gray-300 mb-1">Calories burnt:</label>
-                    <input type="number" step=".01" id="cals" name="cals" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="number" step="0.1" min="0" id="cals" name="cals" class="w-full p-2 rounded bg-gray-700 text-white border border-gray-600 focus:outline-none focus:ring-2 focus:ring-purple-500">
                 </div>
 
                 <button type="submit" id="addExercise" class="w-full bg-purple-600 text-white py-2 rounded hover:bg-purple-700 transition">Add Exercise!</button>
